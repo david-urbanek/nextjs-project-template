@@ -59,8 +59,13 @@ src/
   env.ts                   # validated environment variables
   proxy.ts                 # next-intl locale routing (Next 16 proxy convention)
 messages/                  # cs.json, en.json (translation catalogs)
-e2e/                       # Playwright specs
+specs/
+  integration/             # Vitest cross-module / contract tests
+  e2e/                     # Playwright browser tests
+docs/                      # architecture notes + ADRs (docs/adr/)
 ```
+
+Unit tests are colocated with source as `*.test.{ts,tsx}`.
 
 ### Where code goes
 
@@ -110,8 +115,23 @@ e2e/                       # Playwright specs
 
 ## Skills
 
-Reusable agent skills are vendored under `.agents/skills/` (`better-ui`,
-`better-layout`, `grill-me`) so they travel with the repo.
+Agent skills are vendored under `.agents/skills/` so they travel with the repo
+(`.claude/skills/` symlinks them for Claude Code). The set includes `better-ui`
+and `better-layout` plus the full `mattpocock/skills` engineering + writing
+collection, pinned in `skills-lock.json`.
+
+Stack-specific skills also vendored for this template:
+
+- `vercel-react-best-practices` — React/Next.js performance rules (RSC, bundle
+  size, waterfalls, re-render) used when writing or reviewing React/Next code.
+- `security-audit` — security review scoped to this stack: CSP/headers in
+  `next.config.ts`, env via `src/env.ts`, server actions, dependency audit.
+- `frontend-design` — distinctive visual design direction (typography, palette,
+  layout) when building or restyling UI.
+- `shadcn` — add/search/fix/style shadcn components and registries.
+
+- Update: `npx skills update`
+- Add more: `npx skills add <owner/repo@skill>`
 
 <!-- BEGIN:nextjs-agent-rules -->
 
