@@ -60,12 +60,13 @@ src/
   proxy.ts                 # next-intl locale routing (Next 16 proxy convention)
 messages/                  # cs.json, en.json (translation catalogs)
 specs/
+  unit/                    # Vitest unit tests (mirrors src/)
   integration/             # Vitest cross-module / contract tests
   e2e/                     # Playwright browser tests
 docs/                      # architecture notes + ADRs (docs/adr/)
 ```
 
-Unit tests are colocated with source as `*.test.{ts,tsx}`.
+All tests live under `specs/`; `specs/unit/` mirrors `src/` and imports via `@/`.
 
 ### Where code goes
 

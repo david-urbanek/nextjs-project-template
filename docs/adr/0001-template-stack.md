@@ -23,13 +23,12 @@ over-engineering.
 - **Security headers** (CSP, HSTS, frame, nosniff, referrer, permissions) on
   every response via `next.config.ts`.
 - **Env** validated with `@t3-oss/env-nextjs` + zod.
-- **Testing**: Vitest (unit, colocated) + Vitest integration (`specs/integration`)
-  - Playwright e2e (`specs/e2e`).
+- **Testing**: all tests under `specs/` — Vitest `specs/unit` (mirrors `src/`) +
+  Vitest `specs/integration` + Playwright `specs/e2e`.
 - **Tooling**: ESLint flat + Prettier, Husky + lint-staged, GitHub Actions CI.
 
 ## Consequences
 
 - Business logic stays testable and decoupled from React.
-- Unit tests live next to source; cross-module and browser tests live under
-  `specs/`.
+- Every test type has one home under `specs/`; `specs/unit` mirrors `src/`.
 - Tightening the CSP for third-party origins is a conscious, explicit step.

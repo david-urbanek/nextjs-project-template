@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildGreeting } from "./greeting-service";
+import { buildGreeting } from "@/services/greeting-service";
 
 describe("buildGreeting", () => {
   it("greets a named person per locale", () => {
