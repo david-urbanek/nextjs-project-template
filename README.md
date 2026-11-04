@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Project Template
 
-## Getting Started
+Production-ready Next.js starter: App Router + TypeScript, i18n (`cs`/`en`),
+Tailwind + shadcn/ui, full SEO, security headers, env validation and a complete
+test + CI setup.
 
-First, run the development server:
+## Stack
+
+Next.js 16 · React 19 · TypeScript (strict) · Tailwind v4 · shadcn/ui ·
+next-intl · Vitest · Playwright · ESLint + Prettier · pnpm
+
+## Prerequisites
+
+- **Node.js 20+**
+- **pnpm** (`corepack enable` or `npm i -g pnpm`)
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 1. Use this template (or clone it)
+git clone <your-repo-url> my-app
+cd my-app
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Configure environment
+cp .env.example .env.local
+# edit .env.local — set NEXT_PUBLIC_SITE_URL
+
+# 4. Start the dev server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000** — you'll be redirected to a localized route
+(`/cs` or `/en`, based on your browser language).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command           | Description                 |
+| ----------------- | --------------------------- |
+| `pnpm dev`        | Dev server (Turbopack)      |
+| `pnpm build`      | Production build            |
+| `pnpm start`      | Serve the production build  |
+| `pnpm lint`       | ESLint                      |
+| `pnpm typecheck`  | `tsc --noEmit`              |
+| `pnpm test`       | Vitest (unit + integration) |
+| `pnpm test:watch` | Vitest watch mode           |
+| `pnpm test:e2e`   | Playwright e2e              |
+| `pnpm format`     | Prettier write              |
 
-## Learn More
+First Playwright run only: `pnpm exec playwright install chromium`.
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/[locale]/    # localized routes (/cs, /en)
+  services/        # business logic + data access
+  lib/ hooks/      # pure helpers / shared hooks
+  components/ui/   # shadcn primitives
+  i18n/ config/    # routing + brand/SEO config
+  env.ts proxy.ts  # validated env + locale middleware
+messages/          # cs.json, en.json
+specs/             # unit / integration / e2e tests
+docs/              # architecture + ADRs
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [`AGENTS.md`](./AGENTS.md) for conventions and [`docs/`](./docs) for
+architecture and decision records.
 
-## Deploy on Vercel
+## Before going to production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Set a real `NEXT_PUBLIC_SITE_URL` in your deploy environment.
+- Replace `src/app/icon.svg` and `src/app/favicon.ico` with brand assets.
+- Edit `src/config/site.ts` (name, Twitter handle).
+- Tighten the CSP in `next.config.ts` for any third-party origins you add.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Deploys cleanly to any Node host or [Vercel](https://vercel.com/new). Ensure
+`NEXT_PUBLIC_SITE_URL` is set in the environment so metadata, sitemap and robots
+resolve to absolute URLs.
+
+```
+pnpm build && pnpm start
+```
