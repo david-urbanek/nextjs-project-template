@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "title": "Next.js Template",
+    "description": "Produkční Next.js template s TypeScriptem, i18n a SEO."
+  },
+  "home": {
+    "title": "Next.js Project Template",
+    "description": "Produkční základ: App Router, TypeScript, Tailwind, shadcn/ui, next-intl a SEO.",
+    "cta": "Začít"
+  },
+  "localeSwitcher": {
+    "label": "Jazyk"
+  },
+  "notFound": {
+    "title": "Stránka nenalezena",
+    "description": "Požadovaná stránka neexistuje.",
+    "back": "Zpět na úvod"
+  }
+}

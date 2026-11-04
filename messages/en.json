@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "title": "Next.js Template",
+    "description": "Production-ready Next.js template with TypeScript, i18n and SEO."
+  },
+  "home": {
+    "title": "Next.js Project Template",
+    "description": "Production baseline: App Router, TypeScript, Tailwind, shadcn/ui, next-intl and SEO.",
+    "cta": "Get started"
+  },
+  "localeSwitcher": {
+    "label": "Language"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "back": "Back home"
+  }
+}
