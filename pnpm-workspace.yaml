@@ -3,3 +3,6 @@ ignoredBuiltDependencies:
   - unrs-resolver
 overrides:
   "@types/node": "24.19.2"
+  # GHSA-g3hv-75wg-m249 (minimatch ReDoS, >=7 <11.0.1)
+  "@typescript-eslint/typescript-estree>minimatch": "^11.0.1"
+  "@ts-morph/common>minimatch": "^11.0.1"
